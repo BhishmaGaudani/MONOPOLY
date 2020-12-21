@@ -2,7 +2,7 @@ var gameBoard
 var iron_img,hat_img,ship_img,dog_img,players
 var community_chest,chance
 var dice,dice1,dice2,dice3,dice4,dice5,dice6
-var chance =1
+var chance =0
 function preload(){
   gameBoard = loadImage("images/monopolyboard.jpg")
  iron_img = loadImage("images/player1.png")
@@ -20,16 +20,16 @@ function preload(){
 function setup(){
     canvas = createCanvas(windowWidth-20,windowHeight-20);
     database = firebase.database();
-   iron = createSprite(width-40,height-25);
+   iron = createSprite(width-width/11,height-height/11);
    iron.addImage(iron_img)
    iron.scale=0.25
-    hat = createSprite(width-40,height-80);
+    hat = createSprite(width-width/11,height-height/11);
     hat.addImage(hat_img)
     hat.scale=0.25
-    ship = createSprite(width-130,height-80);
+    ship = createSprite(width-width/11,height-height/11);
     ship.addImage(ship_img)
     ship.scale=0.15
-    dog = createSprite(width-130,height-25);
+    dog = createSprite(width-width/11,height-height/11);
     dog.addImage(dog_img)
     dog.scale=0.13
 
@@ -69,11 +69,29 @@ function draw(){
    }
    switch(chance){
      case 1:
+       if(iron.y>height-height/11){
+        for(var i=0;i<rand;i++)
+        iron.x-=width/11;
+        }
+        if(iron.x<height/11){
+          for(var i=0;i<rand;i++)
+          iron.y-=height/11;
+        }
+        if(iron.y<height/11){
+          for(var i=0;i<rand;i++)
+          iron.x+=width/11;
+        }
+        if(iron.x>width-width/11){
+          for(var i=0;i<rand;i++)
+          iron.y+=height/11;
+        }
+        console.log(width,height) //1580,856
+        console.log(iron.x,iron.y)
+        break;
+       
    }
   } 
-  if(mousePressed){
-    console.log(mouseX,mouseY)
-    }  
+  
 
 
   drawSprites();
@@ -83,3 +101,6 @@ function draw(){
   text("Press Space to Roll the Dice",width/2+30,200);
 
 }
+function mousePressed(){
+  console.log(mouseX,mouseY)
+}  
