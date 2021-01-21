@@ -69,21 +69,25 @@ function draw(){
    }
    switch(chance){
      case 1:
-       if(iron.y>height-height/11){
+       if(iron.y>=height-height/11){
         for(var i=0;i<rand;i++)
-        iron.x-=width/11;
+        iron.x-=width/13;
+        console.log("1")
         }
-        if(iron.x<height/11){
+        if(iron.x<=height/11){
           for(var i=0;i<rand;i++)
-          iron.y-=height/11;
+          iron.y-=height/13;
+          console.log("1")
         }
-        if(iron.y<height/11){
+        if(iron.y<=height/11){
           for(var i=0;i<rand;i++)
-          iron.x+=width/11;
+          iron.x+=width/13;
+          console.log("1")
         }
-        if(iron.x>width-width/11){
+        if(iron.x>=width-width/11){
           for(var i=0;i<rand;i++)
-          iron.y+=height/11;
+          iron.y+=height/13;
+          console.log("1")
         }
         console.log(width,height) //1580,856
         console.log(iron.x,iron.y)
